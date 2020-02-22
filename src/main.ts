@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import './core/lazy_lib/lazy_use'
+import '@/components/lazy_use'
 
 Vue.config.productionTip = false
 
