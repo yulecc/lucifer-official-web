@@ -5,6 +5,9 @@ import store from './store'
 
 import '@/components/lazy_use'
 
+import VueCompositionApi from '@vue/composition-api'
+Vue.use(VueCompositionApi)
+
 Vue.config.productionTip = false
 
 new Vue({
