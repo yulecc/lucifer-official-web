@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { RouterOptions } from 'vue-router'
 import { asyncRouterMap } from './router.config'
 
 Vue.use(VueRouter)
@@ -7,5 +7,5 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes: asyncRouterMap
-})
+} as RouterOptions)
 export default router
