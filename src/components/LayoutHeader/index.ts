@@ -1,3 +1,3 @@
-import GlobalHeader from './LayoutHeader.vue'
+import LayoutHeader from './LayoutHeader.vue'
 
-export default GlobalHeader
+export default LayoutHeader

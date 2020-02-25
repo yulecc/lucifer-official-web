@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import '@/components/lazy_use'
+import '@/auth'
 
 import VueCompositionApi from '@vue/composition-api'
 Vue.use(VueCompositionApi)
