@@ -1,11 +1,21 @@
 <template>
-  <div class="myDiv">
-    <p>
-      我們的使命是<span class="blue">匯整</span>全球<span class="red">資訊</span
-      >，<span class="green">供大眾使用</span>，<span class="yellow"
-        >使人人受惠</span
-      >。
-    </p>
+  <div class="header">
+    <div class="logo-area">
+      <img src="../../assets/logo.png" alt="路西法" />
+    </div>
+    <nav>
+      <a-row type="flex" justify="start" align="middle">
+        <a-col :span="4">
+          <router-link to="/solution">题解</router-link>
+        </a-col>
+        <a-col :span="4">
+          <router-link to="/everyday">每日一题</router-link>
+        </a-col>
+        <a-col :span="4">
+          <router-link to="/download">下载专区</router-link>
+        </a-col>
+      </a-row>
+    </nav>
   </div>
 </template>
 
@@ -22,23 +32,40 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.myDiv {
-  font-size: 18px;
-  p {
-    color: #202124;
-    font-family: 'Google Sans Display', Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    .blue {
-      color: #4285f4;
+.header {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background: #fff;
+  .logo-area {
+    flex: 0 0 100px;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
     }
-    .red {
-      color: #ea4335;
+  }
+  nav {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    font: 600 20px 'Google Sans Display', Arial, Helvetica, sans-serif;
+    text-shadow: 0px 0px 30px #00bcd4;
+    color: #122c30;
+    @keyframes hue {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(-360deg);
+      }
     }
-    .green {
-      color: #34a853;
-    }
-    .yellow {
-      color: #f9ab00;
+    > div {
+      flex: 0 0 70%;
+      color: #156386;
+      background-image: linear-gradient(92deg, #eb5628 0%, #feab3a 100%);
+      animation: hue 100s infinite linear;
+      background-clip: text;
     }
   }
 }
