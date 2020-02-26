@@ -1,13 +1,13 @@
 <template>
-  <a-layout style="min-height:100vh">
+  <a-layout class="layout layout-content-white">
     <a-layout-header class="layout-header">
       <LayoutHeader />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider>
+      <a-layout-sider class="layout-sider">
         <LayoutSider />
       </a-layout-sider>
-      <a-layout-content>
+      <a-layout-content class="layout-content-white">
         <LayoutContent />
       </a-layout-content>
     </a-layout>
@@ -30,7 +30,16 @@ export default createComponent({
 </script>
 
 <style lang="less" scoped>
+.layout {
+  min-height: 100vh;
+}
+.layout-content-white {
+  background: #fff;
+}
 .layout-header {
+  padding: 0;
+}
+.layout-sider {
   background: #fff;
 }
 </style>
