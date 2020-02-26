@@ -4,9 +4,6 @@
       <LayoutHeader />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider class="layout-sider">
-        <LayoutSider />
-      </a-layout-sider>
       <a-layout-content class="layout-content-white">
         <LayoutContent />
       </a-layout-content>

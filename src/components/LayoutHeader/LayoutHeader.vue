@@ -15,7 +15,7 @@
           <router-link to="/download">下载专区</router-link>
         </a-col>
         <a-col :span="4">
-          <router-link to="/download">视频专区</router-link>
+          <router-link to="/video">视频专区</router-link>
         </a-col>
       </a-row>
     </nav>
