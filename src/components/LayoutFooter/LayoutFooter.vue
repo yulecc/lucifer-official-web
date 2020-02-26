@@ -2,94 +2,48 @@
   <div class="footer-container">
     <div class="footer-upper">
       <div class="footer-col">
-        <h4>Product</h4>
+        <h4>常用链接</h4>
         <ul>
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link to="/">首页</router-link>
           </li>
           <li>
-            <router-link to="/">Lorem ipsum </router-link>
+            <router-link to="/">每日一题</router-link>
           </li>
           <li>
-            <router-link to="/">dolor sit amet</router-link>
+            <router-link to="/">题解</router-link>
           </li>
           <li>
-            <router-link to="/">consectetur adipisicing </router-link>
+            <router-link to="/">力扣中国</router-link>
           </li>
           <li>
-            <router-link to="/">elit. Qui quis</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-col hidden-md">
-        <h4>Features</h4>
-        <ul>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/">Lorem ipsum </router-link>
-          </li>
-          <li>
-            <router-link to="/">dolor sit amet</router-link>
-          </li>
-          <li>
-            <router-link to="/">consectetur adipisicing </router-link>
-          </li>
-          <li>
-            <router-link to="/">elit. Qui quis</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-col hidden-md">
-        <h4>Videos</h4>
-        <ul>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/">Lorem ipsum </router-link>
-          </li>
-          <li>
-            <router-link to="/">dolor sit amet</router-link>
-          </li>
-          <li>
-            <router-link to="/">consectetur adipisicing </router-link>
-          </li>
-          <li>
-            <router-link to="/">elit. Qui quis</router-link>
+            <router-link to="/">下载专区</router-link>
           </li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>News</h4>
+        <h4>视频</h4>
         <ul>
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link to="/">今日更新</router-link>
           </li>
           <li>
-            <router-link to="/">Lorem ipsum </router-link>
+            <router-link to="/">面试专题</router-link>
           </li>
           <li>
-            <router-link to="/">dolor sit amet</router-link>
-          </li>
-          <li>
-            <router-link to="/">consectetur adipisicing </router-link>
-          </li>
-          <li>
-            <router-link to="/">elit. Qui quis</router-link>
+            <router-link to="/">算法分类</router-link>
           </li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact Us</h4>
+        <h4>微信公众号</h4>
         <div class="image-container">
           <img src="../../assets/QRCode.jpg" alt="QR Code" />
         </div>
       </div>
     </div>
     <div class="footer-lower">
-      © 2020 Lucifer. All rights reserved
+      © 2020 Lucifer. 保留所有权利
     </div>
   </div>
 </template>
@@ -120,7 +74,7 @@ img {
     flex-wrap: wrap;
     justify-content: space-between;
     .footer-col {
-      width: 15%;
+      width: 25%;
       min-width: 160px;
       margin-right: 5%;
       text-align: left;
@@ -136,6 +90,9 @@ img {
       ul {
         padding-left: 0;
         list-style: none;
+        li {
+          margin-bottom: 6px;
+        }
         a {
           color: #fff;
         }
@@ -156,7 +113,7 @@ img {
       .footer-col,
       .footer-col:last-child {
         text-align: center;
-        margin: 0 auto;
+        margin: 0 auto 20px;
         .image-container {
           max-width: 100%;
         }
