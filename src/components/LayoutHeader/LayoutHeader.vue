@@ -14,6 +14,9 @@
         <a-col :span="4">
           <router-link to="/download">下载专区</router-link>
         </a-col>
+        <a-col :span="4">
+          <router-link to="/download">视频专区</router-link>
+        </a-col>
       </a-row>
     </nav>
   </div>
@@ -36,6 +39,7 @@ export default {
   display: flex;
   align-items: center;
   height: 100%;
+  padding: 0 150px;
   background: #fff;
   .logo-area {
     flex: 0 0 100px;
