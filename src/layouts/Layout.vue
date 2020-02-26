@@ -11,7 +11,7 @@
         <LayoutContent />
       </a-layout-content>
     </a-layout>
-    <a-layout-footer>
+    <a-layout-footer class="layout-footer">
       <LayoutFooter />
     </a-layout-footer>
   </a-layout>
@@ -41,5 +41,8 @@ export default createComponent({
 }
 .layout-sider {
   background: #fff;
+}
+.layout-footer {
+  background-color: #444;
 }
 </style>
