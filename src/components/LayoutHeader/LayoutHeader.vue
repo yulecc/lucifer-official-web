@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header w-1280">
     <div class="logo-area">
       <img src="../../assets/logo.png" alt="路西法" />
     </div>
@@ -39,8 +39,6 @@ export default {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 150px;
-  background: #fff;
   .logo-area {
     flex: 0 0 100px;
     height: 100%;
