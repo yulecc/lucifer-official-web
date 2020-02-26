@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header w-1280">
     <div class="logo-area">
       <img src="../../assets/logo.png" alt="路西法" />
     </div>
@@ -13,6 +13,9 @@
         </a-col>
         <a-col :span="4">
           <router-link to="/download">下载专区</router-link>
+        </a-col>
+        <a-col :span="4">
+          <router-link to="/download">视频专区</router-link>
         </a-col>
       </a-row>
     </nav>
@@ -36,7 +39,6 @@ export default {
   display: flex;
   align-items: center;
   height: 100%;
-  background: #fff;
   .logo-area {
     flex: 0 0 100px;
     height: 100%;

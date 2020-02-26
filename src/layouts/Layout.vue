@@ -1,6 +1,6 @@
 <template>
   <a-layout class="layout layout-content-white">
-    <a-layout-header class="layout-header">
+    <a-layout-header class="layout-header layout-content-white">
       <LayoutHeader />
     </a-layout-header>
     <a-layout>
@@ -37,6 +37,8 @@ export default createComponent({
   background: #fff;
 }
 .layout-header {
+  display: flex;
+  justify-content: center;
   padding: 0;
 }
 .layout-sider {
