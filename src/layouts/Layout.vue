@@ -42,6 +42,7 @@ export default createComponent({
   background: #fff;
 }
 .layout-footer {
+  padding: 8px 20px 4px;
   background-color: #444;
 }
 </style>

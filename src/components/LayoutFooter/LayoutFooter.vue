@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="footer-lower">
-      © 2020 Lucifer. 保留所有权利
+      © 2020 lucifer. 保留所有权利
     </div>
     <a-modal
       :width="400"
@@ -58,7 +58,7 @@ const modalData = {
   },
   officialAccount: {
     title: '公众号',
-    image: require('../../assets/official_account.jpg')
+    image: require('../../assets/official_account_QR_code.jpg')
   }
 }
 export default {
@@ -91,20 +91,19 @@ img {
   width: 100%;
 }
 .footer-container {
-  padding-top: 20px;
   .footer-upper {
-    max-width: 400px;
+    max-width: 240px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     .icon-wrapper {
-      width: 24px;
-      margin-right: 20px;
+      width: 16px;
     }
   }
   .footer-lower {
-    margin-top: 40px;
-    color: #e3e3e3;
+    font-size: 12px;
+    margin-top: 7px;
+    color: #999;
     font-family: Arial, Helvetica, sans-serif;
   }
 }
