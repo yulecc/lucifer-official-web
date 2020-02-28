@@ -1,5 +1,4 @@
 import Layout from '@/layouts'
-
 export const asyncRouterMap = [
   {
     path: '/',
@@ -7,6 +6,13 @@ export const asyncRouterMap = [
     meta: { title: '首页' },
     component: Layout,
     children: [
+      {
+        path: 'home',
+        alias: '/',
+        name: 'home',
+        component: () =>
+          import(/* webpackChunkName: "view-home" */ '@/views/Home.vue')
+      },
       {
         path: 'solution',
         component: () =>
