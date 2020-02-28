@@ -1,7 +1,9 @@
 <template>
   <div class="header w-1280">
     <div class="logo-area">
-      <img src="../../assets/logo.png" alt="路西法" />
+      <router-link to="/">
+        <img src="../../assets/logo.png" alt="路西法" />
+      </router-link>
     </div>
     <nav>
       <a-row type="flex" justify="start" align="middle">

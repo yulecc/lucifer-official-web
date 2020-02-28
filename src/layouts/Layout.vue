@@ -3,11 +3,9 @@
     <a-layout-header class="layout-header layout-content-white">
       <LayoutHeader />
     </a-layout-header>
-    <a-layout>
-      <a-layout-content class="layout-content-white">
-        <LayoutContent />
-      </a-layout-content>
-    </a-layout>
+    <a-layout-content class="layout-content layout-content-white">
+      <LayoutContent class="w-1280" />
+    </a-layout-content>
     <a-layout-footer class="layout-footer">
       <LayoutFooter />
     </a-layout-footer>
@@ -38,8 +36,9 @@ export default createComponent({
   justify-content: center;
   padding: 0;
 }
-.layout-sider {
-  background: #fff;
+.layout-content {
+  display: flex;
+  justify-content: center;
 }
 .layout-footer {
   padding: 8px 20px 4px;
