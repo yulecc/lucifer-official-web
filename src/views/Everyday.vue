@@ -4,6 +4,7 @@
       <!-- Search for keywords -->
       <form @submit="searchAndUpdate" style="max-width:400px;margin:20px auto;">
         <a-input
+          :value="keyword"
           @input="handleInputChange"
           type="text"
           placeholder="搜索关键字"
@@ -28,19 +29,8 @@
           <a-tag
             v-for="tag in tags"
             :key="tag.id"
-            :color="
-              tag.name === 'Daily Question'
-                ? 'volcano'
-                : tag.name === 'Easy'
-                ? 'green'
-                : tag.name === 'LeetCode'
-                ? 'brown'
-                : tag.name === 'Medium'
-                ? 'cyan'
-                : tag.name === 'Hard'
-                ? 'cyan'
-                : 'magenta'
-            "
+            :color="assignTagColor(tag.name)"
+            @click="handleTagClick"
           >
             {{ tag.name }}
           </a-tag>
@@ -79,11 +69,11 @@ const columns = [
 
 export default {
   components: {},
+  computed: {},
   data() {
     return {
       keyword: '',
       problems: [],
-      totalPages: 0,
       data: [],
       pagination: {
         defaultPageSize: 20,
@@ -94,29 +84,53 @@ export default {
     }
   },
   methods: {
+    assignTagColor: function(str) {
+      switch (str) {
+        case 'Daily Question':
+          return 'volcano'
+        case 'Easy':
+          return 'green'
+        case 'LeetCode':
+          return 'purple'
+        case 'Medium':
+          return 'cyan'
+        case 'Hard':
+          return 'brown'
+        default:
+          return '#bbb'
+      }
+    },
     handleInputChange(e) {
       this.keyword = e.target.value
+    },
+    handleTagClick(e) {
+      const {
+        target: { innerText }
+      } = e
+      this.loadData(0, `+label:"${innerText}"`)
     },
     async searchAndUpdate(e) {
       e.preventDefault()
       this.loadData(0)
     },
-    getProblems: async (pageNumber, keyword) => {
+    getProblems: async (pageNumber, keyword, label) => {
       const config = {
         params: {
-          state: 'all'
+          state: 'all',
+          githubClientSecret: '64ec9c15ee608c201f0b5f4b3fde881b07d2bc31',
+          githubClientId: 'e6dafd54b96fcef74c56',
+          page: pageNumber,
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          per_page: 20
         }
       }
-      const url = keyword
-        ? `https://api.github.com/search/issues?q=%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98+${keyword}+repo:azl397985856/leetcode&page=${pageNumber}&per_page=20`
-        : `https://api.github.com/search/issues?q=%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98+repo:azl397985856/leetcode&page=${pageNumber}&per_page=20`
+      keyword = keyword ? `+"${keyword}"` : ''
+      const url = `https://api.github.com/search/issues?q=【每日一题】 ${keyword}${label ||
+        ''}+repo:azl397985856/leetcode+in%3Atitle+is:issue`
       const result = await axios.get(url, config)
-      const {
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        data: { items, total_count }
-      } = result
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      const totalCount = total_count
+      const items = result.data.items
+      const totalCount = result.data.total_count
+
       return {
         data: items.map(item => {
           return {
@@ -131,21 +145,28 @@ export default {
         totalCount
       }
     },
-    async loadData(current) {
+    async loadData(current, label) {
       this.loading = true
-      const { data, totalCount } = await this.getProblems(
-        current ? current : 0,
-        this.keyword
-      )
-      this.data = data.map(item => {
-        console.log(item)
-        return {
-          ...item,
-          title: item.title.replace('【每日一题】- ', '')
-        }
-      })
-      this.pagination.total = totalCount
-      this.loading = false
+      try {
+        const { data, totalCount } = await this.getProblems(
+          current || 0,
+          this.keyword,
+          label
+        )
+        this.data = data.map(item => {
+          return {
+            ...item,
+            title: item.title.replace('【每日一题】- ', '')
+          }
+        })
+        this.pagination.total = totalCount
+        this.pagination.showTotal = total => `Total ${total} items`
+        this.loading = false
+      } catch (error) {
+        alert(`Something went wrong: ${error.message}`)
+        console.error(error.message)
+        this.loading = false
+      }
     },
     async handleTableChange(pagination, filters, sorter) {
       const { current } = pagination
@@ -159,7 +180,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .ant-tag {
   margin-bottom: 8px;
 }
