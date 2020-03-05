@@ -184,4 +184,8 @@ export default {
 .ant-tag {
   margin-bottom: 8px;
 }
+td,
+th > div {
+  text-align: center;
+}
 </style>
