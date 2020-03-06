@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="max-width-600-center">
+      <a-alert
+        v-if="hasError"
+        message="很抱歉，目前请求无法执行，请稍候再试。"
+        type="error"
+      />
+    </div>
     <div>
       <!-- Search for keywords -->
       <form
@@ -82,17 +89,18 @@ const columns = [
     scopedSlots: { customRender: 'locked' }
   }
 ]
-
+const defaultPageSize = 20
 export default {
   components: {},
   computed: {},
   data() {
     return {
+      hasError: false,
       keyword: '',
       problems: [],
       data: [],
       pagination: {
-        defaultPageSize: 20,
+        defaultPageSize,
         total: 0
       },
       loading: false,
@@ -109,11 +117,15 @@ export default {
         )
 
         this.tags = tags.data
-
-        this.$forceUpdate()
       } catch (error) {
-        alert(error.message)
+        this.showError()
       }
+    },
+    showError() {
+      this.hasError = true
+      setTimeout(() => {
+        this.hasError = false
+      }, 5000)
     },
     assignTagColor: function(str) {
       switch (str) {
@@ -159,7 +171,7 @@ export default {
           githubClientId: 'e6dafd54b96fcef74c56',
           page: pageNumber,
           // eslint-disable-next-line @typescript-eslint/camelcase
-          per_page: 20
+          per_page: defaultPageSize
         }
       }
       keyword = keyword ? `+"${keyword}"` : ''
@@ -201,7 +213,7 @@ export default {
         this.pagination.showTotal = total => `共 ${total} 条`
         this.loading = false
       } catch (error) {
-        alert(`Something went wrong: ${error.message}`)
+        this.showError()
         console.error(error.message)
         this.loading = false
       }
@@ -255,5 +267,9 @@ i > svg {
 }
 i {
   font-size: 28px;
+}
+.max-width-600-center {
+  margin: 10px auto;
+  max-width: 600px;
 }
 </style>
