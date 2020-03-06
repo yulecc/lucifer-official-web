@@ -70,7 +70,7 @@
 import axios from 'axios'
 
 // const - Column names for the table header
-const columns = [
+const COLUMNS = [
   {
     title: '题名',
     dataIndex: 'titleAndUrl',
@@ -89,7 +89,7 @@ const columns = [
     scopedSlots: { customRender: 'locked' }
   }
 ]
-const defaultPageSize = 20
+const DEFAULT_PAGE_SIZE = 20
 export default {
   components: {},
   computed: {},
@@ -100,11 +100,11 @@ export default {
       problems: [],
       data: [],
       pagination: {
-        defaultPageSize,
+        defaultPageSize: DEFAULT_PAGE_SIZE,
         total: 0
       },
       loading: false,
-      columns,
+      columns: COLUMNS,
       tags: [],
       label: ''
     }
@@ -171,7 +171,7 @@ export default {
           githubClientId: 'e6dafd54b96fcef74c56',
           page: pageNumber,
           // eslint-disable-next-line @typescript-eslint/camelcase
-          per_page: defaultPageSize
+          per_page: DEFAULT_PAGE_SIZE
         }
       }
       keyword = keyword ? `+"${keyword}"` : ''
