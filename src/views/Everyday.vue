@@ -215,10 +215,11 @@ export default {
       } catch (error) {
         this.showError()
         console.error(error.message)
+
         this.loading = false
       }
     },
-    async handleTableChange(pagination, filters, sorter) {
+    async handleTableChange(pagination) {
       const { current } = pagination
       this.loadData(current, this.label ? this.label : '')
     }
