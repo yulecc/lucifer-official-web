@@ -3,7 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import './core/lazy_lib/lazy_use'
+import '@/components/lazy_use'
+import '@/auth'
+
+import VueCompositionApi from '@vue/composition-api'
+Vue.use(VueCompositionApi)
 
 Vue.config.productionTip = false
 
