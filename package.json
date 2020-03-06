@@ -12,6 +12,7 @@
   "dependencies": {
     "@vue/composition-api": "^0.3.4",
     "ant-design-vue": "^1.4.11",
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "nprogress": "^0.2.0",
     "vue": "^2.6.11",
