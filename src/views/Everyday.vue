@@ -27,7 +27,7 @@
             </a>
             <a-menu slot="overlay">
               <a-menu-item>
-                <a @click="handleClearTagSelect"> 取消选中 </a>
+                <a @click="handleClearTagSelect"> 清除 </a>
               </a-menu-item>
               <a-menu-item v-for="(label, index) in tags" :key="index">
                 <a @click="handleTagSelect">{{ label.name }}</a>
