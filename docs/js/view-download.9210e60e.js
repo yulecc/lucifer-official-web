@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["view-download"],{3971:function(n,e,t){"use strict";t.r(e);var l=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div")},o=[],u={},a=u,c=t("2877"),i=Object(c["a"])(a,l,o,!1,null,null,null);e["default"]=i.exports}}]);
-//# sourceMappingURL=view-download.9210e60e.js.map
