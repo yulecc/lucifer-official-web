@@ -31,7 +31,7 @@ jobs:
           npm install
           npm run-script build
 
-      # Build and Deploy to GitHub Pages
+      # Deploy to GitHub Pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
