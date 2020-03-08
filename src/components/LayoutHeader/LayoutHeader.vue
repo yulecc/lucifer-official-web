@@ -20,7 +20,7 @@
           <router-link to="/video" class="nav-font">视频专区</router-link>
         </a-col>
         <a-col :span="4" class="icon-new">
-          <router-link to="/video" class="nav-font">我的新书</router-link>
+          <router-link to="/book" class="nav-font">我的新书</router-link>
         </a-col>
       </a-row>
     </nav>
