@@ -31,8 +31,13 @@ jobs:
 
             # Deploy to GitHub Pages
             - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@releases/v3
-              with:
-                  ACCESS_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-                  BRANCH: gh-pages
-                  FOLDER: docs
+            uses: peaceiris/actions-gh-pages@v3
+            with:
+              personal_token: ${{ secrets.PERSONAL_TOKEN }}
+              publish_dir: ./docs
+            # - name: Deploy
+            #   uses: JamesIves/github-pages-deploy-action@releases/v3
+            #   with:
+            #       ACCESS_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+            #       BRANCH: gh-pages
+            #       FOLDER: docs
