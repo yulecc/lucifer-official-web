@@ -3,7 +3,7 @@
     <div class="max-width-600-center">
       <a-alert
         v-if="hasError"
-        message="很抱歉，目前请求无法执行，请稍候再试。"
+        message="很抱歉，目前请求无法执行，请稍候再试"
         type="error"
       />
     </div>
