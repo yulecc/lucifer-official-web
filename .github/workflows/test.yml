@@ -34,7 +34,7 @@ jobs:
 
       # Build and Deploy to GitHub Pages
       - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
