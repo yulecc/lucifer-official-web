@@ -81,7 +81,7 @@ import axios from 'axios'
 // const - Column names for the table header
 const COLUMNS = [
   {
-    title: '题名',
+    title: '题目名',
     dataIndex: 'titleAndUrl',
     width: '40%',
     scopedSlots: { customRender: 'name' }
