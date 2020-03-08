@@ -2,7 +2,7 @@
     "name": "lc",
     "version": "0.1.0",
     "private": true,
-    "homepage": "http://sorrycc.cn/lucifer-official-web",
+    "homepage": "https://yulecc.github.io/lucifer-official-web",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",

@@ -5,7 +5,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-    publicPath: '/lucifer-official-web/',
     outputDir: 'docs',
     css: {
         loaderOptions: {
