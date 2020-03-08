@@ -5,7 +5,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-  outputDir: 'docs',
   css: {
     loaderOptions: {
       less: { javascriptEnabled: true }
