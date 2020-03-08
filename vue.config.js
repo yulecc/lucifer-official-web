@@ -5,8 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-    publicPath:
-        process.env.NODE_ENV === 'production' ? '/lucifer-official-web/' : '/',
+    publicPath: '/lucifer-official-web/',
     outputDir: 'docs',
     css: {
         loaderOptions: {
