@@ -226,7 +226,7 @@ export default {
         this.loading = false
       } catch (error) {
         this.showError()
-        console.error(error.message)
+        // console.error(error.message)
 
         this.loading = false
       }

@@ -32,6 +32,11 @@ export const asyncRouterMap = [
         path: 'video',
         component: () =>
           import(/* webpackChunkName: "view-video" */ '@/views/Video.vue')
+      },
+      {
+        path: 'book',
+        component: () =>
+          import(/* webpackChunkName: "view-book" */ '@/views/Book.vue')
       }
     ]
   }

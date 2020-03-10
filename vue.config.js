@@ -15,3 +15,4 @@ module.exports = {
     config.devServer.disableHostCheck(true)
   }
 }
+

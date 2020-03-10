@@ -26,4 +26,4 @@ Just enjoy it ฅ●ω●ฅ
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
