@@ -14,6 +14,7 @@
         style="max-width:600px;margin:20px auto;display:flex;"
       >
         <a-input
+          style="width: auto; flex: 1;"
           :value="keyword"
           @input="handleInputChange"
           type="text"
@@ -25,11 +26,19 @@
               {{ label || '标签' }} <a-icon type="caret-down" />
             </a>
             <a-menu slot="overlay">
+              <a-menu-item>
+                <a @click="handleClearTagSelect"> 清除 </a>
+              </a-menu-item>
               <a-menu-item v-for="(label, index) in tags" :key="index">
                 <a @click="handleTagSelect">{{ label.name }}</a>
               </a-menu-item>
             </a-menu>
           </a-dropdown>
+        </div>
+        <div class="submit-container" style="width: 60px;margin-left: 10px;">
+          <a-button @click="searchAndUpdate">
+            搜索
+          </a-button>
         </div>
       </form>
       <!-- Problem List -->
@@ -110,6 +119,9 @@ export default {
     }
   },
   methods: {
+    handleClearTagSelect() {
+      this.label = ''
+    },
     async getAllLabels() {
       try {
         const tags = await axios.get(
@@ -247,10 +259,13 @@ th > div {
   text-align: left;
   min-width: 240px;
   margin-left: 10px;
-  background-color: #2f83d1;
+
+  background-color: #e6f7ff;
+  border: 1px solid #87e8de;
   border-radius: 4px;
   a {
-    font-size: 16px;
+    font-size: 14px;
+    color: #1890ff;
   }
 }
 .ant-dropdown-link {
@@ -258,6 +273,12 @@ th > div {
   color: #fff;
   text-align: center;
   font-weight: 600;
+  position: relative;
+  i {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+  }
 }
 .ant-dropdown-menu {
   max-height: 300px;
@@ -266,9 +287,7 @@ th > div {
 i > svg {
   vertical-align: inherit;
 }
-i {
-  font-size: 28px;
-}
+
 .max-width-600-center {
   margin: 10px auto;
   max-width: 600px;
