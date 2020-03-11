@@ -53,9 +53,9 @@
         @change="handleTableChange"
       >
         <template slot="name" slot-scope="titleAndUrl">
-          <a :href="titleAndUrl.url" target="_blank">
+          <router-link :to="'/everyday/' + titleAndUrl.number">
             {{ titleAndUrl.title }}
-          </a>
+          </router-link>
         </template>
         <template slot="tags" slot-scope="tags">
           <a-tag
@@ -200,7 +200,8 @@ export default {
             locked: item.title.includes('🔒'),
             titleAndUrl: {
               title: item.title.replace('【每日一题】- ', ''),
-              url: item.html_url
+              url: item.html_url,
+              number: item.number
             }
           }
         }),
