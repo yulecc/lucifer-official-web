@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["view-video"],{"81a8":function(e,n,t){"use strict";t.r(n);var i=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div")},l=[],u={},a=u,c=t("2877"),o=Object(c["a"])(a,i,l,!1,null,null,null);n["default"]=o.exports}}]);
+//# sourceMappingURL=view-video.6d21643c.js.map
