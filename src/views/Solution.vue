@@ -1,9 +1,9 @@
 <template>
-  <div></div>
+  <div>
+    I am solution
+  </div>
 </template>
-
 <script>
 export default {}
 </script>
-
-<style></style>
+<style scoped></style>
