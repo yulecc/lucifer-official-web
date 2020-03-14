@@ -60,20 +60,8 @@ export default {
       flex: 0 0 70%;
       .nav-font {
         color: #156386;
-        background-image: linear-gradient(92deg, #eb5628 0%, #feab3a 100%);
-        animation: hue 100s infinite linear;
-        background-clip: text;
         font: 600 20px 'Google Sans Display', Arial, Helvetica, sans-serif;
-        text-shadow: 0px 0px 15px #00bcd4;
         color: #156386;
-        @keyframes hue {
-          0% {
-            filter: hue-rotate(0deg);
-          }
-          100% {
-            filter: hue-rotate(-360deg);
-          }
-        }
       }
     }
   }
