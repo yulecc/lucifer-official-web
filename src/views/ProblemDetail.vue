@@ -110,6 +110,9 @@ export default {
       document.querySelectorAll('code').forEach(block => {
         hljs.highlightBlock(block)
       })
+      document.querySelectorAll('img').forEach(block => {
+        block.style.maxWidth = '340px'
+      })
     }
   }
 }
