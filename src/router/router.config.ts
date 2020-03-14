@@ -11,43 +11,46 @@ export const asyncRouterMap = [
         alias: '/',
         name: 'home',
         component: () =>
-          import(/* webpackChunkName: "view-home" */ '@/views/Home.vue')
+          import(/* webpackChunkName: "view-home" */ '@/views/Home/Home.vue')
       },
       {
         path: 'solution',
         component: () =>
-          import(/* webpackChunkName: "view-solution" */ '@/views/Solution.vue')
+          import(
+            /* webpackChunkName: "view-solution" */ '@/views/Solution/Solution.vue'
+          )
       },
       {
         path: 'everyday/:id',
         component: () =>
           import(
-            /* webpackChunkName: "view-solution" */ '@/views/ProblemDetail.vue'
+            /* webpackChunkName: "view-everyday" */ '@/views/ProblemDetail/ProblemDetail.vue'
           )
       },
       {
         path: 'everyday',
         component: () =>
-          import(/* webpackChunkName: "view-everyday" */ '@/views/Everyday.vue')
+          import(
+            /* webpackChunkName: "view-everyday" */ '@/views/Everyday/Everyday.vue'
+          )
       },
       {
         path: 'download',
         component: () =>
-          import(/* webpackChunkName: "view-download" */ '@/views/Download.vue')
+          import(
+            /* webpackChunkName: "view-download" */ '@/views/Download/Download.vue'
+          )
       },
       {
         path: 'video',
         component: () =>
-          import(/* webpackChunkName: "view-video" */ '@/views/Video.vue')
+          import(/* webpackChunkName: "view-video" */ '@/views/Video/Video.vue')
       },
       {
         path: 'book',
         component: () =>
-          import(/* webpackChunkName: "view-book" */ '@/views/Book.vue')
+          import(/* webpackChunkName: "view-book" */ '@/views/Book/Book.vue')
       }
     ]
   }
 ]
-
-// 基础路由
-export const constantRouterMap = []
