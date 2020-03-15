@@ -19,6 +19,13 @@ export const asyncRouterMap = [
           import(/* webpackChunkName: "view-solution" */ '@/views/Solution.vue')
       },
       {
+        path: 'everyday/:id',
+        component: () =>
+          import(
+            /* webpackChunkName: "view-solution" */ '@/views/ProblemDetail.vue'
+          )
+      },
+      {
         path: 'everyday',
         component: () =>
           import(/* webpackChunkName: "view-everyday" */ '@/views/Everyday.vue')
@@ -32,6 +39,11 @@ export const asyncRouterMap = [
         path: 'video',
         component: () =>
           import(/* webpackChunkName: "view-video" */ '@/views/Video.vue')
+      },
+      {
+        path: 'book',
+        component: () =>
+          import(/* webpackChunkName: "view-book" */ '@/views/Book.vue')
       }
     ]
   }
