@@ -24,6 +24,7 @@
         </a-col>
       </a-row>
     </nav>
+    <dark-mode-toggle />
   </div>
 </template>
 

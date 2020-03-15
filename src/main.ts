@@ -6,8 +6,10 @@ import store from './store'
 import '@/components/lazy_use'
 import '@/auth'
 import '@/enhancement'
-
 import VueCompositionApi from '@vue/composition-api'
+
+import './override.less'
+
 Vue.use(VueCompositionApi)
 
 Vue.config.productionTip = false
