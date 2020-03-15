@@ -76,7 +76,7 @@
 import axios from 'axios'
 
 // 需要采集视频的b站账号id
-const USERID = 519510412
+const USERID = 407725475
 // 每页数据的长度
 const PAGESIZE = 30
 
