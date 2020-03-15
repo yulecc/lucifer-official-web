@@ -21,9 +21,9 @@
           >{{ label.name }}</a-tag
         >
       </p>
-      <h2>题目详情</h2>
+      <h2 class="subtitle">题目详情</h2>
       <div class="desc text-align-left" v-html="desc"></div>
-      <h2>解题思路</h2>
+      <h2 class="subtitle">题解</h2>
       <div class="solution text-align-left" v-html="solution"></div>
     </div>
   </div>
@@ -36,6 +36,24 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 const md = new MarkdownIt()
 const URL_REGEX = /(\s+)(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
+/** 
+  The above regex will match the following cases
+  http://www.foufos.gr
+  https://www.foufos.gr
+  http://foufos.gr
+  http://www.foufos.gr/kino
+  http://werer.gr
+  www.foufos.gr
+  www.mp3.com
+  www.t.co
+  http://t.co
+  http://www.t.co
+  https://www.t.co
+  www.aa.com
+  http://aa.com
+  http://www.aa.com
+  https://www.aa.com
+ */
 const ERROR_MSG_DISPLAY_DURATION = 5000
 const COLORS = [
   'pink',
@@ -78,7 +96,7 @@ export default {
         )
         this.loading = false
         this.title = res.data.title
-        this.desc = this.renderMarkdown(this.addLinkMarkdown(res.data.body))
+        this.desc = md.render(this.addLinkMarkdown(res.data.body))
         this.createDate = res.data.created_at
         this.issueUrl = res.data.comments_url
         this.labels = res.data.labels
@@ -97,14 +115,11 @@ export default {
         this.solution = (res.data[0] && res.data[0].body) || ''
 
         // Markdown to HTML
-        this.solution = this.renderMarkdown(this.solution)
+        this.solution = md.render(this.solution)
       } catch (error) {
         this.showError()
         this.loading = false
       }
-    },
-    renderMarkdown(content) {
-      return md.render(content)
     }
   },
   async mounted() {
@@ -124,7 +139,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-h2 {
+h2.subtitle {
   margin-top: 50px;
   margin-bottom: 30px;
   font-size: 32px;
