@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" ref="wrapper">
+  <div class="wrapper">
     <ul v-show="!isShowVideo" class="tag-list">
       <li
         v-for="item in tagList"
@@ -20,9 +20,9 @@
       </li>
     </ul>
     <ul v-show="!isShowVideo" class="video-list">
-      <a-spin v-show="!currentVideoList.length" class="loading" size="large" />
+      <a-spin v-show="videoList.length == 0" class="loading" size="large" />
       <li
-        v-for="item in currentVideoList"
+        v-for="item in videoList"
         :key="item.aid"
         @click="handleVideo(item.aid)"
         class="video-item"
@@ -43,11 +43,12 @@
         </article>
       </li>
     </ul>
-    <a-spin v-show="videoLoad" class="loading" size="large" />
+    <a-spin v-show="videoLoading" class="loading" size="large" />
+
     <a-pagination
       v-show="!isShowVideo"
       v-model="currentPage"
-      :total="total"
+      :total="count"
       :pageSize="pageSize"
       @change="pageChange"
       size="normal"
@@ -61,8 +62,8 @@
     />
     <iframe
       v-show="isShowVideo"
-      ref="ifr"
       :src="videoSrc"
+      style="width:100%;height:100%;"
       scrolling="no"
       border="0"
       frameborder="no"
@@ -76,32 +77,27 @@
 <script>
 import axios from 'axios'
 
-const USERLIST = [511477625, 36074883]
-const PAGESIZE = 20
-
+// 需要采集视频的b站账号id
+// const USERLIST = [511477625, 36074883, 519510412, 393064833]
+const USERLIST = 393064833
+const PAGESIZE = 30
 export default {
   data() {
     return {
-      tagList: [
-        {
-          name: '全部',
-          tid: -1,
-          count: 0
-        }
-      ],
-      currentTagId: -1,
-      searchWorld: null,
-      videoList: [],
-      currentVideoList: [],
-      videoSrc: '',
-      isShowVideo: false,
-      currentPage: 1,
-      pageSize: PAGESIZE,
-      videoLoad: true // 视频是否加载中
+      tagList: [], // 标签列表
+      currentTagId: -1, // 当前所在的标签id
+      searchWorld: null, // 搜索词
+      videoList: [], // 视频列表
+      videoSrc: '', // 当前正在播放的视频地址
+      isShowVideo: false, // 是否播放视频
+      total: 0, // 视频总量
+      currentPage: 1, // 当前页数
+      pageSize: PAGESIZE, // 每页数量
+      videoLoading: true // 视频是否加载中
     }
   },
   created() {
-    this.getAllUserVideo(USERLIST)
+    this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
   },
   methods: {
     initData() {
@@ -114,63 +110,45 @@ export default {
         }
       ]
     },
-    // 获取一组用户的作品
-    getAllUserVideo(userList) {
-      const taskList = userList.map(item => this.getUserAllVideo(item))
-      return axios.all(taskList).then(res => {
-        this.calculatVideoTags(res)
-      })
-    },
-    // 获取某一用户的全部视频作品
-    getUserAllVideo(mid) {
-      return axios.get('/userVideo/getSubmitVideos', {
-        params: {
-          mid
-        }
-      })
-    },
-    // 计算用户的全部作品以及标签
-    calculatVideoTags(res) {
-      this.initData()
-      // 获取全部的视频以及标签
-      const videoList = [],
-        tagList = []
-      res.map(item => {
-        const data = item.data.data
-        videoList.push(...data.vlist)
-        Object.keys(data.tlist).map(key => {
-          tagList.push(data.tlist[key])
+    /**获取某一用户分页后的视频作品
+     * @param{Number} mid 需要采集的b用户id
+     * @param{Number} page 第多少页的数据
+     * @param{Number} pagesize 每页数据的长度
+     * @return{Promise} 获取并处理分页后数据的promise
+     */
+    getUserPageVideo(mid, page, pagesize) {
+      return axios
+        .get('/userVideo/getSubmitVideos', {
+          params: {
+            mid,
+            page,
+            pagesize
+          }
         })
-      })
-      /**
-       * 对标签进行去重处理,同时计算视频总数量
-       */
-      // 将当前已有的标签存为map结构
-      const tagMap = {}
-      let videoSum = 0 // 视频的总个数
-      tagList.map((item, index) => {
-        // 累加视频数量
-        videoSum += item.count
-        // 判断这个分类是否已经存在,
-        const tagIndex = tagMap[item.name]
-        if (tagIndex) {
-          // 已经存在则数量累加,同时在标签数组里删除这个重复的标签
-          tagList[tagIndex].count += item.count
-          tagList.splice(index, 1)
-        } else {
-          // 不存在,则将这个新标签存入map
-          tagMap[item.name] = index
+        .then(res => {
+          this.calculatUserPageData(res.data.data)
+          return res.data.data
+        })
+    },
+    // 处理用户的某一页视频数据
+    calculatUserPageData(data) {
+      const { tlist, vlist, count } = data
+      this.initData()
+      // 调整标签数据的格式
+      const tagList = [
+        {
+          name: '全部',
+          tid: -1,
+          count
         }
+      ]
+      Object.keys(tlist).forEach(key => {
+        tagList.push(tlist[key])
       })
-      // 在标签数组头部添加'全部'标签
-      tagList.unshift({
-        name: '全部',
-        tid: -1,
-        count: videoSum
-      })
-      this.videoList = videoList
-      this.getCurrentPageList()
+      // 设置标签列表,视频列表,总页数
       this.tagList = tagList
+      this.videoList = vlist
+      this.count = count
     },
     handleInputChange(e) {
       this.searchWorld = e.target.value
@@ -182,59 +160,37 @@ export default {
     handleVideo(aid) {
       this.videoSrc = `//player.bilibili.com/player.html?aid=${aid}`
       this.isShowVideo = true
-      this.videoLoad = true
-      this.setIframe()
+      this.videoLoading = true
     },
     // 视频加载完毕时
     videoOnLoad() {
-      this.videoLoad = false
+      this.videoLoading = false
     },
     // 关闭ifram播放的视频
     handleClose() {
       this.isShowVideo = false
       this.videoSrc = ''
     },
-    // 设置ifram的宽高
-    setIframe() {
-      const iframe = this.$refs.ifr
-      if (iframe) {
-        iframe.height = this.$refs.wrapper.clientHeight
-        iframe.width = this.$refs.wrapper.clientWidth - 20
-      }
-    },
     // 根据标题关键字搜索
     onSearch() {
       if (this.searchWorld) {
-        this.getAllUserVideo(USERLIST).then(res => {
-          const target = this.searchWorld.toLowerCase()
-          this.videoList = this.videoList.filter(item => {
-            return item.title.toLowerCase().indexOf(target) >= 0
-          })
-          this.getCurrentPageList()
-        })
+        this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize).then(
+          () => {
+            const target = this.searchWorld.toLowerCase()
+            this.videoList = this.videoList.filter(item => {
+              return item.title.toLowerCase().indexOf(target) >= 0
+            })
+          }
+        )
       } else {
-        this.getAllUserVideo(USERLIST)
+        this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
       }
     },
     pageChange(currentPage) {
       this.currentPage = currentPage
-    },
-    // 获取当前页的数据
-    getCurrentPageList() {
-      this.currentVideoList = this.videoList.slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      )
-    }
-  },
-  computed: {
-    total() {
-      return this.tagList[0].count
-    }
-  },
-  watch: {
-    currentPage() {
-      this.getCurrentPageList()
+      // 获取某一页的数据
+      this.initData()
+      this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
     }
   },
   filters: {
@@ -290,7 +246,8 @@ export default {
     justify-content: start;
     flex-wrap: wrap;
     width: 85%;
-    margin: 20px auto;
+    margin: 0px auto;
+    padding-bottom: 50px;
     .video-item {
       width: 180px;
       height: 100%;
@@ -298,7 +255,7 @@ export default {
       border: 1px solid #e5e9ef;
       border-radius: 4px;
       background: #fff;
-      margin: 20px 10px;
+      margin: 20px 15px;
       img {
         border-radius: 4px;
         width: 180px;
@@ -332,8 +289,8 @@ export default {
     }
   }
   .pagination {
-    position: absolute;
-    bottom: 120px;
+    position: relative;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
   }
