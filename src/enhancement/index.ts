@@ -1,4 +1,7 @@
 import Vue from 'vue'
-import installNProgress from './nprogress'
+import darkMode from './darken-mode'
 
-Vue.use(installNProgress)
+import nprogress from './nprogress'
+
+Vue.use(nprogress)
+Vue.use(darkMode)

@@ -1,9 +1,9 @@
 <template>
-  <a-layout class="layout layout-content-white">
-    <a-layout-header class="layout-header layout-content-white">
+  <a-layout class="layout">
+    <a-layout-header class="layout-header">
       <LayoutHeader />
     </a-layout-header>
-    <a-layout-content class="layout-content layout-content-white">
+    <a-layout-content class="layout-content">
       <LayoutContent class="w-1280" />
     </a-layout-content>
     <a-layout-footer class="layout-footer">
@@ -28,9 +28,7 @@ export default createComponent({
 .layout {
   min-height: 100vh;
 }
-.layout-content-white {
-  background: #fff;
-}
+
 .layout-header {
   display: flex;
   justify-content: center;
