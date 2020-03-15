@@ -89,7 +89,7 @@ export default {
       videoList: [], // 视频列表
       videoSrc: '', // 当前正在播放的视频地址
       isShowVideo: false, // 是否播放视频
-      total: 0, // 视频总量
+      count: 0, // 视频总量
       currentPage: 1, // 当前页数
       pageSize: PAGESIZE, // 每页数量
       videoLoading: true // 视频是否加载中
