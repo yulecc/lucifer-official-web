@@ -20,6 +20,7 @@
       </li>
     </ul>
     <ul v-show="!isShowVideo" class="video-list">
+      <a-spin v-show="searchLoading" class="loading" size="large" />
       <li
         v-for="item in videoList"
         :key="item.aid"
@@ -32,7 +33,7 @@
           <p class="video-item-detail">
             <span style="margin-right:25px;">
               <a-icon type="caret-right" />
-              {{ item.play }}
+              {{ item.play | getPlay }}
             </span>
             <span>
               <a-icon type="clock-circle" />
@@ -61,7 +62,7 @@
     <iframe
       v-show="isShowVideo"
       :src="videoSrc"
-      style="width:100%;height:100%;"
+      class="ifram"
       scrolling="no"
       border="0"
       frameborder="no"
@@ -79,6 +80,8 @@ import axios from 'axios'
 const USERID = 519510412
 // 每页数据的长度
 const PAGESIZE = 30
+// b站访问成功时的code
+const REQUEST_CODE = 200
 
 export default {
   data() {
@@ -86,6 +89,7 @@ export default {
       tagList: [], // 标签列表
       currentTagId: -1, // 当前所在的标签id
       searchWorld: null, // 搜索词
+      searchLoading: true, // 作品是否搜索中
       videoList: [], // 视频列表
       videoSrc: '', // 当前正在播放的视频地址
       isShowVideo: false, // 是否播放视频
@@ -117,6 +121,8 @@ export default {
      * @return{Promise} 获取并处理分页后数据的promise
      */
     getUserPageVideo(mid, page, pagesize) {
+      // 开启loading
+      this.searchLoading = true
       return axios
         .get('/userVideo/getSubmitVideos', {
           params: {
@@ -126,8 +132,21 @@ export default {
           }
         })
         .then(res => {
-          this.calculatUserPageData(res.data.data)
-          return res.data.data
+          const {
+            data: { data },
+            status
+          } = res
+          // 判断请求是否成功
+          if (status === REQUEST_CODE) {
+            this.calculatUserPageData(data)
+          }
+        })
+        .catch(err => {
+          // 超时以及错误处理
+        })
+        .finally(() => {
+          // 关闭loading
+          this.searchLoading = false
         })
     },
     // 处理用户的某一页视频数据
@@ -197,6 +216,9 @@ export default {
     getTime(time) {
       const date = new Date(time * 1000)
       return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    },
+    getPlay(play) {
+      return play >= 10000 ? `${(play / 10000).toFixed(1)}万` : play
     }
   }
 }
@@ -254,7 +276,8 @@ export default {
       height: 100%;
       margin-bottom: 20px;
       border: 1px solid #e5e9ef;
-      border-radius: 4px;
+      border-radius: 10px;
+      overflow: hidden;
       background: #fff;
       margin: 20px 15px;
       img {
@@ -294,6 +317,10 @@ export default {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
+  }
+  .ifram {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
