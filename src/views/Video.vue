@@ -27,11 +27,11 @@
         @click="handleVideo(item.aid)"
         class="video-item"
       >
-        <img :src="item.pic" />
-        <article>
-          <p class="video-item-title">{{ item.title }}</p>
-          <p class="video-item-detail">
-            <span style="margin-right:25px;">
+        <img class="video-item-cover" :src="item.pic" />
+        <article class="video-item-descript">
+          <p class="video-item-p video-item-title">{{ item.title }}</p>
+          <p class="video-item-p video-item-detail">
+            <span class="video-item-detail-play">
               <a-icon type="caret-right" />
               {{ item.play | getPlay }}
             </span>
@@ -141,7 +141,7 @@ export default {
             this.calculatUserPageData(data)
           }
         })
-        .catch(err => {
+        .catch(() => {
           // 超时以及错误处理
         })
         .finally(() => {
@@ -280,19 +280,19 @@ export default {
       overflow: hidden;
       background: #fff;
       margin: 20px 15px;
-      img {
+      .video-item-cover {
         border-radius: 4px;
         width: 180px;
         height: 100px;
         display: block;
       }
-      article {
+      .video-item-descript {
         width: 90%;
         margin: 0 auto;
         color: #222;
         font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
           Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
-        p {
+        .video-item-p {
           color: #99a2aa;
           text-align: start;
           margin: 7px auto;
@@ -308,6 +308,9 @@ export default {
         .video-item-detail {
           width: 100%;
           font-size: 12px;
+          .video-item-detail-play {
+            margin-right: 25px;
+          }
         }
       }
     }
