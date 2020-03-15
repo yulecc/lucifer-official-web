@@ -20,7 +20,6 @@
       </li>
     </ul>
     <ul v-show="!isShowVideo" class="video-list">
-      <a-spin v-show="videoList.length == 0" class="loading" size="large" />
       <li
         v-for="item in videoList"
         :key="item.aid"
@@ -77,7 +76,7 @@
 import axios from 'axios'
 
 // 需要采集视频的b站账号id
-const USERLIST = 519510412
+const USERID = 519510412
 // 每页数据的长度
 const PAGESIZE = 30
 
@@ -98,7 +97,7 @@ export default {
   },
   created() {
     // 获取首页的数据
-    this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
+    this.getUserPageVideo(USERID, this.currentPage, this.pageSize)
   },
   methods: {
     initData() {
@@ -175,7 +174,7 @@ export default {
     // 根据标题关键字搜索
     onSearch() {
       if (this.searchWorld) {
-        this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize).then(
+        this.getUserPageVideo(USERID, this.currentPage, this.pageSize).then(
           () => {
             const target = this.searchWorld.toLowerCase()
             this.videoList = this.videoList.filter(item => {
@@ -184,14 +183,14 @@ export default {
           }
         )
       } else {
-        this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
+        this.getUserPageVideo(USERID, this.currentPage, this.pageSize)
       }
     },
     pageChange(currentPage) {
       this.currentPage = currentPage
       // 获取某一页的数据
       this.initData()
-      this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
+      this.getUserPageVideo(USERID, this.currentPage, this.pageSize)
     }
   },
   filters: {
@@ -247,6 +246,7 @@ export default {
     justify-content: start;
     flex-wrap: wrap;
     width: 85%;
+    min-height: 400px;
     margin: 0px auto;
     padding-bottom: 50px;
     .video-item {
