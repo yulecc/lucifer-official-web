@@ -5,6 +5,7 @@ import store from './store'
 
 import '@/components/lazy_use'
 import '@/auth'
+import '@/enhancement'
 
 import VueCompositionApi from '@vue/composition-api'
 Vue.use(VueCompositionApi)
