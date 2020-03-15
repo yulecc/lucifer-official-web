@@ -44,7 +44,6 @@
       </li>
     </ul>
     <a-spin v-show="videoLoading" class="loading" size="large" />
-
     <a-pagination
       v-show="!isShowVideo"
       v-model="currentPage"
@@ -78,9 +77,10 @@
 import axios from 'axios'
 
 // 需要采集视频的b站账号id
-// const USERLIST = [511477625, 36074883, 519510412, 393064833]
-const USERLIST = 393064833
+const USERLIST = 519510412
+// 每页数据的长度
 const PAGESIZE = 30
+
 export default {
   data() {
     return {
@@ -97,6 +97,7 @@ export default {
     }
   },
   created() {
+    // 获取首页的数据
     this.getUserPageVideo(USERLIST, this.currentPage, this.pageSize)
   },
   methods: {
