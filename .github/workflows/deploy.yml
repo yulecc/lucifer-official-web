@@ -50,14 +50,14 @@ jobs:
                   <commited by Github Action>
                   skip-checks: true
               run: |
-                  ls -al
+                  git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git repo
+                  cd repo
                   # Hard-code user configuration
                   git config user.email "azl397985856@gmail.com"
                   git config user.name "lucifer"
-                  # Update origin with token
-                  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
                   # Checkout the branch so we can push back to it
                   git checkout master
+                  git merge dev
                   git add .
                   # Only commit and push if we have changes
                   git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
