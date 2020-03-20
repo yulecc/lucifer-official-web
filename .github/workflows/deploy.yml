@@ -31,7 +31,6 @@ jobs:
               run: |
                   cp ./docs/CNAME ./dist/CNAME
                   cp ./dist/index.html ./dist/404.html
-
             # Deploy to GitHub Pages
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
@@ -39,3 +38,10 @@ jobs:
                   personal_token: ${{ secrets.PERSONAL_TOKEN }}
                   publish_dir: ./dist
                   publish_branch: gh-pages
+                  
+    merge:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Merge to Master
+            run: |
+                  git push origin master
