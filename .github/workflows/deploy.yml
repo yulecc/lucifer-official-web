@@ -50,7 +50,7 @@ jobs:
                   <commited by Github Action>
                   skip-checks: true
               run: |
-                  ls
+                  ls -al
                   # Hard-code user configuration
                   git config user.email "azl397985856@gmail.com"
                   git config user.name "lucifer"
