@@ -5,7 +5,7 @@ name: deploy
 # events but only for the master branch
 on:
   release:
-    types: [published]
+    types: [unpublished]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -49,6 +49,7 @@ jobs:
                   <commited by Github Action>
                   skip-checks: true
               run: |
+                  ls
                   # Hard-code user configuration
                   git config user.email "azl397985856@gmail.com"
                   git config user.name "lucifer"
