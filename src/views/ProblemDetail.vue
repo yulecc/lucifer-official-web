@@ -139,6 +139,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+/deep/ p > code {
+  display: inline;
+}
 h2.subtitle {
   margin-top: 50px;
   margin-bottom: 30px;
