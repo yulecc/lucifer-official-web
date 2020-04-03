@@ -124,13 +124,16 @@ export default {
       // 开启loading
       this.searchLoading = true
       return axios
-        .get('/userVideo/getSubmitVideos', {
-          params: {
-            mid,
-            page,
-            pagesize
+        .get(
+          'https://5e86bce9c15177ca3d1a4b2f--leetcode-jing.netlify.com/.netlify/functions/getBilibiliVideoList/getBilibiliVideoList.js',
+          {
+            params: {
+              mid,
+              page,
+              pagesize
+            }
           }
-        })
+        )
         .then(res => {
           const {
             data: { data },
