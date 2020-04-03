@@ -125,7 +125,7 @@ export default {
       this.searchLoading = true
       return axios
         .get(
-          'https://5e86bce9c15177ca3d1a4b2f--leetcode-jing.netlify.com/.netlify/functions/getBilibiliVideoList/getBilibiliVideoList.js',
+          'https://5e86f5d3d29490bd12ac9aa5--leetcode-jing.netlify.com/api/getVideoList',
           {
             params: {
               mid,
