@@ -11,7 +11,6 @@
           type="error"
         />
       </div>
-      <h1>{{ title }}</h1>
       <h2 class="subtitle">题解详情</h2>
       <div class="desc text-align-left" v-html="desc"></div>
     </div>
@@ -28,7 +27,6 @@ import 'highlight.js/styles/github.css'
 const md = new MarkdownIt()
 const URL_REGEX = /(\s+)(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
 const LINK_REGRX = /\[(.*)\]\(\.\.\/(.*)\)/g
-// const LINK_REGRX = /\[.*\]\(\.\.(.*)\)/g
 const WAREROOM_PATH = 'https://github.com/azl397985856/leetcode/blob/master/'
 
 const ERROR_MSG_DISPLAY_DURATION = 5000
@@ -38,7 +36,6 @@ export default {
     return {
       loading: true,
       hasError: false,
-      title: '',
       desc: '',
       prettified: false,
       labels: []
@@ -69,7 +66,6 @@ export default {
       return content
         .replace(URL_REGEX, '<$2>')
         .replace(LINK_REGRX, `[$1](${WAREROOM_PATH}$2)`)
-      // .replace(IMG_REGEX, `[$1](${WAREROOM_PATH}$2)`)
     }
   },
   async mounted() {
