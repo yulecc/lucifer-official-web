@@ -146,7 +146,7 @@ export default {
     }
   },
   methods: {
-    handleClick(record, index) {
+    handleClick(record) {
       return {
         on: {
           click: () => {
