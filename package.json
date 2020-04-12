@@ -17,6 +17,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "core-js": "^3.6.4",
     "highlight.js": "^9.18.1",
+    "js-base64": "^2.5.2",
     "markdown-it": "^10.0.0",
     "nprogress": "^0.2.0",
     "vue": "^2.6.11",
