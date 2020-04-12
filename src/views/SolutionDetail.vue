@@ -27,8 +27,8 @@ import 'highlight.js/styles/github.css'
 const md = new MarkdownIt()
 const URL_REGEX = /(\s+)(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
 const LINK_REGRX = /\[(.*)\]\(\.\.\/(.*)\)/g
-const WAREROOM_PATH = 'https://github.com/azl397985856/leetcode/blob/master/'
-
+const WAREHOURSE_ADDRESS =
+  'https://github.com/azl397985856/leetcode/blob/master/'
 const ERROR_MSG_DISPLAY_DURATION = 5000
 
 export default {
@@ -49,7 +49,6 @@ export default {
       }, ERROR_MSG_DISPLAY_DURATION)
     },
     async getSolution() {
-      console.log(Base64)
       try {
         const res = await axios.get(this.$route.query.url)
         this.loading = false
@@ -57,7 +56,6 @@ export default {
           this.addLinkMarkdown(Base64.decode(res.data.content))
         )
       } catch (error) {
-        console.log(error)
         this.showError()
         this.loading = false
       }
@@ -65,7 +63,7 @@ export default {
     addLinkMarkdown(content) {
       return content
         .replace(URL_REGEX, '<$2>')
-        .replace(LINK_REGRX, `[$1](${WAREROOM_PATH}$2)`)
+        .replace(LINK_REGRX, `[$1](${WAREHOURSE_ADDRESS}$2)`)
     }
   },
   async mounted() {

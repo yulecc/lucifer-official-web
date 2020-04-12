@@ -30,11 +30,11 @@ const COLUMNS = [
 const DEFAULT_PAGE_SIZE = 10
 
 // 仓库地址
-const WAREROOMADDRESS =
+const WAREHOURSE_ADDRESS =
   'https://api.github.com/repos/azl397985856/leetcode/contents'
 
 // 仓库内专题的静态数据
-const STATICDATA = [
+const STATIC_DATA = [
   {
     title: '数据结构',
     url: '/thinkings/basic-data-structure.md',
@@ -136,7 +136,7 @@ const STATICDATA = [
 export default {
   data() {
     return {
-      staticData: STATICDATA,
+      staticData: STATIC_DATA,
       pagination: {
         defaultPageSize: DEFAULT_PAGE_SIZE,
         total: 0
@@ -153,7 +153,7 @@ export default {
             this.$router.push({
               path: 'solutionDetail',
               query: {
-                url: WAREROOMADDRESS + record.url
+                url: WAREHOURSE_ADDRESS + record.url
               }
             })
           }
