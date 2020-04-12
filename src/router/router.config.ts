@@ -19,6 +19,13 @@ export const asyncRouterMap = [
           import(/* webpackChunkName: "view-solution" */ '@/views/Solution.vue')
       },
       {
+        path: 'solutionDetail',
+        component: () =>
+          import(
+            /* webpackChunkName: "view-solution-detail" */ '@/views/SolutionDetail.vue'
+          )
+      },
+      {
         path: 'everyday/:id',
         component: () =>
           import(
