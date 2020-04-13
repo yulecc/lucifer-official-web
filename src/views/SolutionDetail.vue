@@ -103,11 +103,6 @@ h2.subtitle {
 .desc {
   max-width: 800px;
   margin: 20px auto;
-
-  img {
-    display: inline-block;
-    margin: 0 auto;
-  }
 }
 pre {
   white-space: pre-wrap;
