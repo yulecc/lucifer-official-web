@@ -12,12 +12,12 @@
           <span>教你轻松学算法</span>
         </p>
         <div class="button-wrapper">
-          <a href="https://lucifer.ren"
-            ><a-button type="primary" style="margin: 0px 16px;">
+          <a href="https://lucifer.ren/blog/"
+            ><a-button type="primary" style="margin: 0px 16px 0 0;">
               <span>博客</span>
             </a-button></a
           >
-          <a href="https://github.com/azl397985856"
+          <a href="https://github.com/azl397985856/leetcode"
             ><a-button style="margin: 0px 16px;">
               <span>点个star</span>
             </a-button></a
@@ -71,6 +71,7 @@ export default {}
     left: 8%;
     margin: auto;
     z-index: 1;
+    text-align: left;
     h1 {
       font-family: Futura, Helvetica Neue For Number, -apple-system,
         BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB,

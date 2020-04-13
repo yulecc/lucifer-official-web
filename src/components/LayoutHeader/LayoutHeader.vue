@@ -62,9 +62,10 @@ export default {
 .header {
   height: 100%;
   .logo-area {
-    width: 100px;
-    height: 64px;
+    width: 46px;
+    height: 46px;
     img {
+      display: block;
       width: 100%;
       height: 100%;
     }
