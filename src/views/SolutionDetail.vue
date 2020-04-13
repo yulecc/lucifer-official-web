@@ -80,6 +80,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+/deep/ p > code {
+  display: inline;
+}
 h2.subtitle {
   margin-top: 50px;
   margin-bottom: 30px;
@@ -97,10 +100,14 @@ h2.subtitle {
   max-width: 1080px;
   margin: 30px auto;
 }
-.desc,
-.solution {
+.desc {
   max-width: 800px;
   margin: 20px auto;
+
+  img {
+    display: inline-block;
+    margin: 0 auto;
+  }
 }
 pre {
   white-space: pre-wrap;
