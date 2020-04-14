@@ -34,7 +34,7 @@ export default createComponent({
   justify-content: center;
   padding: 0;
 }
-@media screen and(min-width: 1080) {
+@media screen and(min-width: 1080px) {
   .layout-content {
     display: flex;
     justify-content: center;
