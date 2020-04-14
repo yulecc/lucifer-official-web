@@ -59,6 +59,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.w-1280 {
+  width: 1280px;
+}
 .header {
   height: 100%;
   .logo-area {
