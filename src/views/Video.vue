@@ -125,7 +125,7 @@ export default {
       this.searchLoading = true
       return axios
         .get(
-          'https://5e86f5d3d29490bd12ac9aa5--leetcode-jing.netlify.com/api/getVideoList',
+          'https://5e86f5d3d29490bd12ac9aa5--leetcode-jing.netlify.app/api/getVideoList',
           {
             params: {
               mid,

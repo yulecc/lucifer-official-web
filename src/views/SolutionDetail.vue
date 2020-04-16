@@ -75,6 +75,10 @@ export default {
     document.querySelectorAll('img').forEach(block => {
       block.style.maxWidth = '340px'
     })
+    document.querySelectorAll('a').forEach(block => {
+      console.log(123)
+      block.target = '_blank'
+    })
   }
 }
 </script>
