@@ -31,7 +31,6 @@ jobs:
               run: |
                   cp ./docs/CNAME ./dist/CNAME
                   cp ./dist/index.html ./dist/404.html
-
             # Deploy to GitHub Pages
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
@@ -39,3 +38,21 @@ jobs:
                   personal_token: ${{ secrets.PERSONAL_TOKEN }}
                   publish_dir: ./dist
                   publish_branch: gh-pages
+                  
+    merge:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Commit to repository
+              env:
+                GITHUB_TOKEN: ${{ secrets.github_token }}
+                COMMIT_MSG: |
+                  <commited by Github Action>
+                  skip-checks: true
+              run: |
+                  git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git repo
+                  cd repo
+                  # Hard-code user configuration
+                  git config user.email "azl397985856@gmail.com"
+                  git config user.name "lucifer's bot"
+                  git merge origin/dev
+                  git push origin master
