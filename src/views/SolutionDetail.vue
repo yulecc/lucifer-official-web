@@ -106,7 +106,7 @@ h2.subtitle {
 }
 .desc {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 20px 10px;
 }
 pre {
   white-space: pre-wrap;

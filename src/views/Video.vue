@@ -1,16 +1,16 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" id="wrapper">
     <ul v-show="!isShowVideo" class="tag-list">
       <li
         v-for="item in tagList"
         :key="item.tid"
-        :class="[{ active: item.tid == currentTagId }, 'tag-item']"
+        :class="[{ active: item.tid == currentTagId }, 'tag tag-item']"
         @click="handleTag(item.tid)"
       >
         <span>{{ item.name }}</span>
         <span class="tag-num">{{ item.count }}</span>
       </li>
-      <li class="tag-item">
+      <li class="tag-item search">
         <a-input-search
           @input="handleInputChange"
           @search="onSearch"
@@ -42,6 +42,7 @@
           </p>
         </article>
       </li>
+      <li class="video-item empty-video-item" />
     </ul>
     <a-spin v-show="videoLoading" class="loading" size="large" />
     <a-pagination
@@ -228,6 +229,39 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media screen and (max-width: 1080px) {
+  #wrapper {
+    .tag-list {
+      background-color: white;
+    }
+    .tag {
+      display: none;
+    }
+    .search {
+      display: flex;
+      justify-content: center;
+      margin-left: -25px;
+      width: 95%;
+    }
+    .video-list {
+      justify-content: space-around;
+      padding-left: 0px;
+      width: 95%;
+      .video-item {
+        width: 140px;
+        margin: 20px 0px;
+        .video-item-detail-play {
+          margin-right: 8px;
+        }
+      }
+      .empty-video-item {
+        border: none;
+        margin: 0px;
+      }
+    }
+  }
+}
+
 .wrapper {
   width: 100%;
   ul {
@@ -249,6 +283,7 @@ export default {
     width: 80%;
     margin: 10px auto;
     display: flex;
+    flex-wrap: wrap;
     text-indent: 2rem;
     line-height: 36px;
     background: rgb(237, 242, 249);
