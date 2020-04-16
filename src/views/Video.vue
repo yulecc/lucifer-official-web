@@ -4,7 +4,7 @@
       <li
         v-for="item in tagList"
         :key="item.tid"
-        :class="[{ active: item.tid == currentTagId }, 'tag tag-item']"
+        :class="[{ active: item.tid == currentTagId }, 'tag-item']"
         @click="handleTag(item.tid)"
       >
         <span>{{ item.name }}</span>
@@ -19,7 +19,7 @@
         />
       </li>
     </ul>
-    <ul v-show="!isShowVideo" class="video-list">
+    <ul v-show="!isShowVideo" class="video-list ">
       <a-spin v-show="searchLoading" class="loading" size="large" />
       <li
         v-for="item in videoList"
@@ -230,28 +230,101 @@ export default {
 
 <style lang="less" scoped>
 @media screen and (max-width: 1080px) {
-  #wrapper {
-    .tag-list {
-      background-color: white;
+  .wrapper {
+    width: 100%;
+    ul {
+      list-style: none;
+    }
+    .close {
+      position: absolute;
+      font-size: 25px;
+      top: 80px;
+      right: 30px;
+      color: #ccc;
+    }
+    .loading {
+      position: absolute;
+      top: 170px;
+      left: 50%;
     }
     .tag {
       display: none;
     }
-    .search {
+
+    .tag-list {
+      width: 80%;
+      margin: 10px auto;
       display: flex;
-      justify-content: center;
-      margin-left: -25px;
-      width: 95%;
+      flex-wrap: wrap;
+      text-indent: 2rem;
+      line-height: 36px;
+      background: white;
+      border-radius: 4px;
+      padding: 0px 20px;
+      .tag-item {
+        display: none;
+      }
+      .search {
+        display: flex;
+        justify-content: center;
+        margin-left: -25px;
+        width: 95%;
+      }
+      .active {
+        color: rgb(0, 161, 214);
+      }
     }
+
     .video-list {
+      display: flex;
       justify-content: space-around;
-      padding-left: 0px;
+      flex-wrap: wrap;
       width: 95%;
+      min-height: 400px;
+      margin: 0px auto;
+      padding-left: 0px;
+      padding-bottom: 50px;
       .video-item {
         width: 140px;
+        height: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #e5e9ef;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
         margin: 20px 0px;
-        .video-item-detail-play {
-          margin-right: 8px;
+        .video-item-cover {
+          border-radius: 4px;
+          width: 180px;
+          height: 100px;
+          display: block;
+        }
+        .video-item-descript {
+          width: 90%;
+          margin: 0 auto;
+          color: #222;
+          font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+            Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+          .video-item-p {
+            color: #99a2aa;
+            text-align: start;
+            margin: 7px auto;
+          }
+          .video-item-title {
+            display: block;
+            line-height: 20px;
+            height: 38px;
+            margin-top: 6px;
+            overflow: hidden;
+            color: #222;
+          }
+          .video-item-detail {
+            width: 100%;
+            font-size: 12px;
+            .video-item-detail-play {
+              margin-right: 8px;
+            }
+          }
         }
       }
       .empty-video-item {
@@ -259,109 +332,120 @@ export default {
         margin: 0px;
       }
     }
+    .pagination {
+      position: relative;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .ifram {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
-
-.wrapper {
-  width: 100%;
-  ul {
-    list-style: none;
-  }
-  .close {
-    position: absolute;
-    font-size: 25px;
-    top: 80px;
-    right: 30px;
-    color: #ccc;
-  }
-  .loading {
-    position: absolute;
-    top: 170px;
-    left: 50%;
-  }
-  .tag-list {
-    width: 80%;
-    margin: 10px auto;
-    display: flex;
-    flex-wrap: wrap;
-    text-indent: 2rem;
-    line-height: 36px;
-    background: rgb(237, 242, 249);
-    border-radius: 4px;
-    padding: 0px 20px;
-    .tag-item {
-      display: inline-block;
-      cursor: pointer;
-      .tag-num {
-        color: #aaa;
-        margin-left: 8px;
+@media screen and (min-width: 1080px) {
+  .wrapper {
+    width: 100%;
+    ul {
+      list-style: none;
+    }
+    .close {
+      position: absolute;
+      font-size: 25px;
+      top: 80px;
+      right: 30px;
+      color: #ccc;
+    }
+    .loading {
+      position: absolute;
+      top: 170px;
+      left: 50%;
+    }
+    .tag-list {
+      width: 80%;
+      margin: 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      text-indent: 2rem;
+      line-height: 36px;
+      background: rgb(237, 242, 249);
+      border-radius: 4px;
+      padding: 0px 20px;
+      .tag-item {
+        display: inline-block;
+        cursor: pointer;
+        .tag-num {
+          color: #aaa;
+          margin-left: 8px;
+        }
+      }
+      .active {
+        color: rgb(0, 161, 214);
       }
     }
-    .active {
-      color: rgb(0, 161, 214);
-    }
-  }
-  .video-list {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    width: 85%;
-    min-height: 400px;
-    margin: 0px auto;
-    padding-bottom: 50px;
-    .video-item {
-      width: 180px;
-      height: 100%;
-      margin-bottom: 20px;
-      border: 1px solid #e5e9ef;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-      margin: 20px 15px;
-      .video-item-cover {
-        border-radius: 4px;
+    .video-list {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+      width: 85%;
+      min-height: 400px;
+      margin: 0px auto;
+      padding-bottom: 50px;
+      .video-item {
         width: 180px;
-        height: 100px;
-        display: block;
-      }
-      .video-item-descript {
-        width: 90%;
-        margin: 0 auto;
-        color: #222;
-        font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
-          Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
-        .video-item-p {
-          color: #99a2aa;
-          text-align: start;
-          margin: 7px auto;
-        }
-        .video-item-title {
+        height: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #e5e9ef;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        margin: 20px 15px;
+        .video-item-cover {
+          border-radius: 4px;
+          width: 180px;
+          height: 100px;
           display: block;
-          line-height: 20px;
-          height: 38px;
-          margin-top: 6px;
-          overflow: hidden;
-          color: #222;
         }
-        .video-item-detail {
-          width: 100%;
-          font-size: 12px;
-          .video-item-detail-play {
-            margin-right: 25px;
+        .video-item-descript {
+          width: 90%;
+          margin: 0 auto;
+          color: #222;
+          font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+            Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+          .video-item-p {
+            color: #99a2aa;
+            text-align: start;
+            margin: 7px auto;
+          }
+          .video-item-title {
+            display: block;
+            line-height: 20px;
+            height: 38px;
+            margin-top: 6px;
+            overflow: hidden;
+            color: #222;
+          }
+          .video-item-detail {
+            width: 100%;
+            font-size: 12px;
+            .video-item-detail-play {
+              margin-right: 25px;
+            }
           }
         }
       }
     }
-  }
-  .pagination {
-    position: relative;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .ifram {
-    width: 100%;
-    height: 100%;
+    .pagination {
+      position: relative;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .ifram {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
