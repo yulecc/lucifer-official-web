@@ -7,12 +7,7 @@
     </div>
 
     <div class="card-container">
-      <a-card
-        :key="card.id"
-        hoverable
-        style="width:30vw;margin: 0 5px;max-width:200px;"
-        v-for="card in cards"
-      >
+      <a-card :key="card.id" hoverable class="card" v-for="card in cards">
         <img
           class="card-img"
           :alt="card.image.alt"
@@ -59,6 +54,11 @@ export default {
   display: flex;
   // height: 400px;
   margin: 50px 0;
+}
+.card {
+  width: 30vw;
+  margin: 5px;
+  max-width: 200px;
 }
 .card-img {
   height: 200px;
