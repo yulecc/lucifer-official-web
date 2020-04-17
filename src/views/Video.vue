@@ -10,7 +10,7 @@
         <span>{{ item.name }}</span>
         <span class="tag-num">{{ item.count }}</span>
       </li>
-      <li class="tag-item">
+      <li class="tag-item search">
         <a-input-search
           @input="handleInputChange"
           @search="onSearch"
@@ -42,6 +42,7 @@
           </p>
         </article>
       </li>
+      <li class="video-item empty-video-item" />
     </ul>
     <a-spin v-show="videoLoading" class="loading" size="large" />
     <a-pagination
@@ -125,7 +126,7 @@ export default {
       this.searchLoading = true
       return axios
         .get(
-          'https://5e86f5d3d29490bd12ac9aa5--leetcode-jing.netlify.com/api/getVideoList',
+          'https://5e86f5d3d29490bd12ac9aa5--leetcode-jing.netlify.app/api/getVideoList',
           {
             params: {
               mid,
@@ -228,105 +229,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wrapper {
-  width: 100%;
-  ul {
-    list-style: none;
-  }
-  .close {
-    position: absolute;
-    font-size: 25px;
-    top: 80px;
-    right: 30px;
-    color: #ccc;
-  }
-  .loading {
-    position: absolute;
-    top: 170px;
-    left: 50%;
-  }
-  .tag-list {
-    width: 80%;
-    margin: 10px auto;
-    display: flex;
-    text-indent: 2rem;
-    line-height: 36px;
-    background: rgb(237, 242, 249);
-    border-radius: 4px;
-    padding: 0px 20px;
-    .tag-item {
-      display: inline-block;
-      cursor: pointer;
-      .tag-num {
-        color: #aaa;
-        margin-left: 8px;
-      }
-    }
-    .active {
-      color: rgb(0, 161, 214);
-    }
-  }
-  .video-list {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    width: 85%;
-    min-height: 400px;
-    margin: 0px auto;
-    padding-bottom: 50px;
-    .video-item {
-      width: 180px;
-      height: 100%;
-      margin-bottom: 20px;
-      border: 1px solid #e5e9ef;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-      margin: 20px 15px;
-      .video-item-cover {
-        border-radius: 4px;
-        width: 180px;
-        height: 100px;
-        display: block;
-      }
-      .video-item-descript {
-        width: 90%;
-        margin: 0 auto;
-        color: #222;
-        font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
-          Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
-        .video-item-p {
-          color: #99a2aa;
-          text-align: start;
-          margin: 7px auto;
-        }
-        .video-item-title {
-          display: block;
-          line-height: 20px;
-          height: 38px;
-          margin-top: 6px;
-          overflow: hidden;
-          color: #222;
-        }
-        .video-item-detail {
-          width: 100%;
-          font-size: 12px;
-          .video-item-detail-play {
-            margin-right: 25px;
-          }
-        }
-      }
-    }
-  }
-  .pagination {
-    position: relative;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .ifram {
-    width: 100%;
-    height: 100%;
-  }
-}
+@import './Video.pc.less';
+@import './Video.mobile.less';
 </style>

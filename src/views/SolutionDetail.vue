@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div v-if="loading" class="spinner-container">
       <a-spin size="large"></a-spin>
     </div>
@@ -74,7 +74,14 @@ export default {
     })
     document.querySelectorAll('img').forEach(block => {
       block.style.maxWidth = '340px'
+      block.style.width = '100%'
     })
+    document
+      .getElementsByClassName('wrapper')[0]
+      .querySelectorAll('a')
+      .forEach(block => {
+        block.target = '_blank'
+      })
   }
 }
 </script>
@@ -83,38 +90,41 @@ export default {
 /deep/ p > code {
   display: inline;
 }
-h2.subtitle {
-  margin-top: 50px;
-  margin-bottom: 30px;
-  font-size: 32px;
-  font-weight: bold;
-}
-.max-width-800 {
-  max-width: 800px;
-  margin: 30px auto;
-}
-.text-align-left {
-  text-align: left;
-}
-.container {
-  max-width: 1080px;
-  margin: 30px auto;
-}
-.desc {
-  max-width: 800px;
-  margin: 20px auto;
-}
-pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-.spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-.tags {
-  margin-bottom: 30px;
+.wrapper {
+  width: 100%;
+
+  h2.subtitle {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  .max-width-800 {
+    max-width: 800px;
+    margin: 30px auto;
+  }
+  .text-align-left {
+    text-align: left;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 30px auto;
+  }
+  .desc {
+    margin: 20px 10px;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .tags {
+    margin-bottom: 30px;
+  }
 }
 </style>
