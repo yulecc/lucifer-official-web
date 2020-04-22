@@ -28,7 +28,7 @@ const md = new MarkdownIt()
 const URL_REGEX = /(\s+)(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g
 const LINK_REGRX = /\[(.*)\]\(\.\.\/(.*)\)/g
 const WAREHOURSE_ADDRESS =
-  'https://github.com/azl397985856/leetcode/blob/master/'
+  'https://github.com/azl397985856/leetcode/raw/master/'
 const ERROR_MSG_DISPLAY_DURATION = 5000
 
 export default {
