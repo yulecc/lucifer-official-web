@@ -33,7 +33,7 @@
         </a-menu>
       </a-col>
     </a-row>
-    <dark-mode-toggle />
+    <!-- <dark-mode-toggle /> -->
   </div>
 </template>
 
