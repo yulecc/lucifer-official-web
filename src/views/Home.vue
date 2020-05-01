@@ -14,12 +14,12 @@
         <div class="button-wrapper">
           <a href="https://lucifer.ren/blog/"
             ><a-button type="primary" style="margin: 0px 16px 0 0;">
-              <span>博客</span>
+              博客
             </a-button></a
           >
           <a href="https://github.com/azl397985856/leetcode"
             ><a-button style="margin: 0px 16px;">
-              <span>点个star</span>
+              点个star
             </a-button></a
           >
         </div>
@@ -92,6 +92,7 @@ export default {}
         .ant-btn {
           min-width: 110px;
           height: 40px;
+          line-height: 40px;
           border-radius: 20px;
           font-size: 16px;
         }
