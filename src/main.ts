@@ -7,6 +7,7 @@ import '@/components/lazy_use'
 import '@/auth'
 import '@/enhancement'
 import VueCompositionApi from '@vue/composition-api'
+import '@babel/polyfill'
 
 import './override.less'
 
